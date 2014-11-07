@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   #these methods are meant to be created by enum 
   def admin!
-    permission = self.permissions.build
+    permission = self.permissions.first
     permission.level_id = SecurityLevel.find_by_level("high").id
     permission.save
   end      
@@ -32,5 +32,5 @@ class User < ActiveRecord::Base
     end
     return is_admin
   end
-
+  
 end

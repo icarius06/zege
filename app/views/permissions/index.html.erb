@@ -2,10 +2,12 @@
 
 	<%@permissions.each do |permission|%>
 		<%=User.find(permission.user_id).email%> &nbsp
-		<%=SecurityLevel.find(permission.level_id).level%><br>
+		<%=SecurityLevel.find(permission.level_id).level%>
+		<%=link_to "Change Permission",edit_permission_path(permission)%><br>
 	<%end%>
 
 <br>
+
 <%=link_to "New Permission",new_permission_path%>
 
 

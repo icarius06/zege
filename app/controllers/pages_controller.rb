@@ -1,6 +1,11 @@
 class PagesController < ApplicationController
 	  before_filter :authenticate_user!
 
+	 def index
+	 	@pages = Page.all
+	 	authorize @page,"index"
+	 end
+
 	 def new
 	 	@security_level = SecurityLevel.find(params[:security_level_id])
 	 	@page = @security_level.pages.build
@@ -9,11 +14,11 @@ class PagesController < ApplicationController
 
 	 def create
 	 	authorize Page,"create"
-	 	puts "ssss",params[:security_level_id]
-    	@page = Page.new(secure_params)
+	 	@security_level =SecurityLevel.find(params[:security_level_id])
+    	@page = @security_level.pages.build(secure_params)
     
         if @page.save
-      	  redirect_to pages_path, :notice => "Page added."
+      	  redirect_to @security_level, :notice => "Page added."
       	else
       	  flash[:notice]="Not saved"
       	  redirect_to :action=>"new" 

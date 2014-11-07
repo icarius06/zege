@@ -1,7 +1,6 @@
 class PermissionsController < ApplicationController
 	  before_filter :authenticate_user!
 
-
 	  def new
 	  	@permission = Permission.new
 	  	authorize Permission,"new"
@@ -18,6 +17,10 @@ class PermissionsController < ApplicationController
 	        redirect_to :action=>"new" 
 	     end 
 	  end 
+
+	  def edit
+	  	@permission = Permission.find(params[:id])
+	  end
 
 	  def index
 	    @permissions = Permission.all
