@@ -1,4 +1,4 @@
-class UserPolicy
+class UserPolicy <ApplicationPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -13,7 +13,7 @@ class UserPolicy
   end
 
   def show?
-    return has_access_to("show") or @current_user == @user
+    return has_access_to("show") #or @current_user == @user
   end
 
   def update?
@@ -26,13 +26,22 @@ class UserPolicy
   end
 
 private
-  def has_access_to(active_module) 
-    page = Page.where('contoller_name=? AND action_name=?',@controller,active_module).first
-    @permissions.each do |permission| 
-      if page.security_level_id==permission.level_id || @current_user.admin?
-        return true
+  def has_access_to(active_module)  
+    if @current_user.admin?
+      return true
+    else
+      page = Page.where('controller_name=? AND action_name=?',@controller,active_module).first
+      if page.nil?
+          return false
       else
-        return false
+          @current_user.permissions.each do |permission|
+            if permission.level_id==page.security_level_id
+              return false
+            else
+              return true
+            end
+          end  
+          return true
       end
     end
   end

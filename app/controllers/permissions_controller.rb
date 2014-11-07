@@ -1,10 +1,9 @@
 class PermissionsController < ApplicationController
 	  before_filter :authenticate_user!
-	  after_action :verify_authorized
 
 	  def index
 	    @permissions = Permission.all
-	    authorize Permission
+	    authorize Permission,"index"
 	  end
 
 	  def show
@@ -30,8 +29,7 @@ class PermissionsController < ApplicationController
 	  end
 
 	  private
-
-	  def secure_params
-	    params.require(:permission).permit(:level_id,:user_id)
-	  end
+	  	def secure_params
+	  	  params.require(:permission).permit(:level_id,:user_id)
+	  	end
 end

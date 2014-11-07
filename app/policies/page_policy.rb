@@ -1,4 +1,4 @@
-class PagePolicy
+class PagePolicy < ApplicationPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -26,7 +26,7 @@ class PagePolicy
 
 private
   def has_access_to(active_module) 
-    page = Page.where('contoller_name=? AND action_name=?',@controller,active_module).first
+    page = Page.where('controller_name=? AND action_name=?',@controller,active_module).first
     @permissions.each do |permission| 
       if page.security_level_id==permission.level_id || @current_user.admin?
         return true

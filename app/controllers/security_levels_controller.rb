@@ -1,12 +1,11 @@
 class SecurityLevelsController < ApplicationController
   before_filter :authenticate_user!
-  after_action :verify_authorized
 
   def index
     @security_levels = SecurityLevel.all
     authorize SecurityLevel
   end
-
+  
   def show
     @security_level = SecurityLevel.find(params[:id])
     authorize @security_level
