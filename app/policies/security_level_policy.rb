@@ -1,4 +1,4 @@
-class SecurityLevelPolicy
+class SecurityLevelPolicy <ApplicationPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -7,6 +7,11 @@ class SecurityLevelPolicy
     @permissions = current_user.permissions
     @controller ="security_levels"
   end
+
+  def new?
+    return has_access_to("index")
+  end
+
 
   def index?
     return has_access_to("index")
@@ -23,20 +28,5 @@ class SecurityLevelPolicy
   def destroy?
     @current_user.admin?
   end
-
-private
-  def has_access_to(active_module) 
-    page = Page.where('controller_name=? AND action_name=?',@contoller,active_module).first
-   
-    @permissions.each do |permission| 
-      if page.security_level_id==permission.level_id || @current_user.admin?
-        return true
-      else
-        return false
-      end
-    end
-
-  end
-
 
 end

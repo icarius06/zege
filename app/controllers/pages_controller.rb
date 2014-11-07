@@ -1,19 +1,33 @@
 class PagesController < ApplicationController
 	  before_filter :authenticate_user!
 
-	  def index
-	    @pages = Page.all
-	    authorize Page
-	  end
+	 def new
+	 	@security_level = SecurityLevel.find(params[:security_level_id])
+	 	@page = @security_level.pages.build
+	 	authorize @page,"new"
+	 end
+
+	 def create
+	 	authorize Page,"create"
+	 	puts "ssss",params[:security_level_id]
+    	@page = Page.new(secure_params)
+    
+        if @page.save
+      	  redirect_to pages_path, :notice => "Page added."
+      	else
+      	  flash[:notice]="Not saved"
+      	  redirect_to :action=>"new" 
+      	end 
+	 end
 
 	  def show
 	    @page = Page.find(params[:id])
-	    authorize @page
+	    authorize @page,"show"
 	  end
 
 	  def update
 	    @page = Page.find(params[:id])
-	    authorize @page
+	    authorize @page,"update"
 	    if @page.update_attributes(secure_params)
 	      redirect_to pages_path, :notice => "Page updated."
 	    else
@@ -23,7 +37,7 @@ class PagesController < ApplicationController
 
 	  def destroy
 	    page = Page.find(params[:id])
-	    authorize page
+	    authorize page,"destroy"
 	    page.destroy
 	    redirect_to pages_path, :notice => "Page deleted."
 	  end

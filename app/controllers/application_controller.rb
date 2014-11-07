@@ -18,13 +18,27 @@ class ApplicationController < ActionController::Base
           user_not_authorized unless UserPolicy.new(current_user, model).show?
         end	
   	 elsif (model.to_s=="Permission")
+        if action=="index"
 		    	user_not_authorized unless PermissionPolicy.new(current_user, model).index?
+        elsif action=="new"
+          user_not_authorized unless PermissionPolicy.new(current_user, model).new?
+        end
 	   elsif (model.to_s=="Page")
-		    	user_not_authorized unless PagePolicy.new(current_user, model).index?
+		    if action=="index"
+          user_not_authorized unless PermissionPolicy.new(current_user, model).index?
+        elsif action=="new"
+          user_not_authorized unless PermissionPolicy.new(current_user, model).new?
+        elsif action=="show"
+          user_not_authorized unless PermissionPolicy.new(current_user, model).show?
+        end
+
 	   elsif (model.to_s=="SecurityLevel")
+        if action=="index"
 		    	user_not_authorized unless SecurityLevelPolicy.new(current_user, model).index?
-	   end
-  
+        elsif action=="new"
+          user_not_authorized unless SecurityLevelPolicy.new(current_user, model).new?
+        end
+     end  
   end
 
   private

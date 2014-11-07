@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141106170914) do
   create_table "pages", force: true do |t|
     t.string   "controller_name"
     t.string   "action_name"
+    t.integer  "security_level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

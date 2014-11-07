@@ -1,4 +1,6 @@
-<h2>Page Rights</h2>
+<h3>Page Rights</h3>
 <%@pages.each do |page|%>
 <td><%=page.controller_name%></td><td><%=page.action_name%> </td><td><%=page.security_level_id%></td>
 <%end%>
+
+<%=link_to "Add Page",new_security_level_page_path(@security_level)%>

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :permissions
   
-  after_create :set_default_permission, :if => :new_record?
+  after_create :set_default_permission #, :if => :new_record?
 
   def set_default_permission
     permission = self.permissions.build

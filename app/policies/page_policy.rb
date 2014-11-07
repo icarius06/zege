@@ -24,16 +24,4 @@ class PagePolicy < ApplicationPolicy
     @current_user.admin?
   end
 
-private
-  def has_access_to(active_module) 
-    page = Page.where('controller_name=? AND action_name=?',@controller,active_module).first
-    @permissions.each do |permission| 
-      if page.security_level_id==permission.level_id || @current_user.admin?
-        return true
-      else
-        return false
-      end
-    end
-  end
-
 end

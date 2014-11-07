@@ -1,6 +1,7 @@
 <%=form_for @security_level do |form|%>
-<div class="form-group">
-      <%= f.label :level %>
-      <%= f.text_field :level, :autofocus => true, class: 'form-control' %>
+	<div class="form-group">
+      <%= form.label :level %>
+      <%= form.text_field :level, :autofocus => true, class: 'form-control' %>
     </div>
+    <%= form.submit 'Add', :class => 'button right' %>
 <%end%>

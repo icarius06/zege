@@ -1,8 +1,11 @@
 <h2>Permissions</h2>
-<table>
-<thead><td>User</td><td>Level</td><td>Page</td></thead>
-<%@permissions.each do |permission|%>
-	<td><%=User.find(permission.user_id).email%> &nbsp</td><td><%=SecurityLevel.find(permission.level_id).level%></td>
-	<td></td><br>
-<%end%>
-</table>
+
+	<%@permissions.each do |permission|%>
+		<%=User.find(permission.user_id).email%> &nbsp
+		<%=SecurityLevel.find(permission.level_id).level%><br>
+	<%end%>
+
+<br>
+<%=link_to "New Permission",new_permission_path%>
+
+

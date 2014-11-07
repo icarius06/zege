@@ -8,5 +8,8 @@
 
 security_levels = SecurityLevel.create([{ level: 'default' }, { level: 'high' }])
 
-user = CreateAdminService.new.call
+user = User.create(name: 'First User',email: 'user@example.com',password: Rails.application.secrets.admin_password)
+user.admin!
+
+#user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email

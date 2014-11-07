@@ -8,6 +8,11 @@ class PermissionPolicy < ApplicationPolicy
     @controller ="permissions"
   end
   
+  def new?
+    return has_access_to("new")
+  end
+
+
   def index?
     return has_access_to("index")
   end
@@ -22,23 +27,6 @@ class PermissionPolicy < ApplicationPolicy
   
   def destroy?
     @current_user.admin?
-  end
-
-private
-  def has_access_to(active_module) 
-    #page = Page.where('controller_name=? AND action_name=?',@controller,active_module).first
-
-    if  @current_user.admin?
-      return true
-    else
-    #@permissions.each do |permission| 
-    #  if page.security_level_id==permission.level_id
-    #    return true
-    #  else
-        return false
-    #  end
-    end
-  
   end
 
 end

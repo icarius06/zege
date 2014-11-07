@@ -1,0 +1,6 @@
+<h2>Security Levels</h2>
+	<%@security_levels.each do |security_level|%>
+		<li><%=link_to security_level.level, security_level%></li>
+<%end%>
+
+<%=link_to "New Security Level",new_security_level_path%>

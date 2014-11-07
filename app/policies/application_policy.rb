@@ -50,5 +50,25 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+  def has_access_to(active_module) 
+    if @current_user.admin?
+      return true
+    else
+      page = Page.where('controller_name=? AND action_name=?',@controller,active_module).first
+      if page.nil?
+          return false
+      else
+          @current_user.permissions.each do |permission|
+            if permission.level_id==page.security_level_id
+              return false
+            else
+              return true
+            end
+          end  
+      end
+    end
+  end
 end
 
