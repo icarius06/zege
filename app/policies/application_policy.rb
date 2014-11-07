@@ -62,9 +62,9 @@ class ApplicationPolicy
       else
           @current_user.permissions.each do |permission|
             if permission.level_id==page.security_level_id
-              return false
-            else
               return true
+            else
+              return false
             end
           end  
       end

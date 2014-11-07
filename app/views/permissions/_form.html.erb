@@ -7,6 +7,7 @@
     </div>
 
 	<div class="form-group">
+      
       <%= form.label :level_id %>
       <%= select :permission, :level_id,SecurityLevel.all.map {|c| [c.level,c.id]},:class=>"form-control"%>
 	    

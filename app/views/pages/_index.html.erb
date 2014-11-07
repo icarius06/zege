@@ -1,10 +1,7 @@
 <h3>Page Rights</h3>
 <%@pages.each do |page|%>
 	<td>
-		<%=page.controller_name%>
-	</td>
-	<td>
-		<%=page.action_name%>
+		<%=page.controller_name%>#<%=page.action_name%>
 	</td>
 <%end%>
 

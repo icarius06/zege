@@ -15,8 +15,11 @@ class PagesController < ApplicationController
 	 def create
 	 	authorize Page,"create"
 	 	@security_level =SecurityLevel.find(params[:security_level_id])
+	 	controller = params[:path].to_s.split('#')[0]
+	 	action = params[:path].to_s.split('#')[1]
+	 	
     	@page = @security_level.pages.build(secure_params)
-    
+    	
         if @page.save
       	  redirect_to @security_level, :notice => "Page added."
       	else
