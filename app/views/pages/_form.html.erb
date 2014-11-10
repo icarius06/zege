@@ -4,7 +4,7 @@
 	<input id="page_action_name" name="page[action_name]" type="hidden">
 	
 	<div class="form-group">
-		 <select class="form-control" id="page_path">
+		 <select class="form-control" name="path">
             <option>Select path</option>
             <% get_routes.each do |route|%>
             	<%controller_path =route.defaults[:controller].to_s%>

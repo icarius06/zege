@@ -15,9 +15,14 @@ class PagesController < ApplicationController
 	 def create
 	 	authorize Page,"create"
 	 	@security_level =SecurityLevel.find(params[:security_level_id])
-	 	controller = params[:path].to_s.split('#')[0]
-	 	action = params[:path].to_s.split('#')[1]
-	 	
+
+	 	controller_name = params[:path].to_s.split('#')[0]
+	 	action_name = params[:path].to_s.split('#')[1]
+	 	#params[:category].downcase
+    	#@post = Post.new(post_params)
+	 	params[:page][:controller_name] = controller_name
+	 	params[:page][:action_name] = action_name
+
     	@page = @security_level.pages.build(secure_params)
     	
         if @page.save
