@@ -1,10 +1,9 @@
 /*
  *
  *This function llows a fan to follow an artist 
- *posts to the create function in the followeres controller
+ *posts to the create function in the followers controller
  *
  */
-
 
 (function($) {
     $(document).ready(function() {
