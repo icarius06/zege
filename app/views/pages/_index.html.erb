@@ -3,7 +3,7 @@
 	<td>
 		<%=page.controller_name%>#<%=page.action_name%>
 	</td>
-	<td><%=link_to "Delete Page",security_level_page_path(@security_level,page),:data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs'%></td>
+	<td><%=link_to "Delete Page",security_level_page_path(@security_level,page),:data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs'%></td><br>
 <%end%>
 
 <% if @security_level.level!="high" %>
