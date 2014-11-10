@@ -5,10 +5,10 @@
 	</td>
 <%end%>
 
-<% if @security_level.level!="high	" %>
+<% if @security_level.level!="high" %>
 	<p>
 	<%=link_to "Add page accessible by this security level",new_security_level_page_path(@security_level)%>
 	</p>
 <%else%>
-<p>Can access all pages</p>
+<p>This level can access all pages</p>
 <%end%>
