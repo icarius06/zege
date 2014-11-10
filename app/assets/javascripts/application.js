@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require custom.js
 //= require_tree .
-//= custom.js
+
 
