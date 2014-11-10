@@ -8,9 +8,9 @@ zege developer test app
 To test the app visit the url 
 https://zege-dev-app.herokuapp.com
 
-login in as the seeded admin user 
-user@example.com
-hans_solo
+login in as the seeded admin user (Run rake db:seed if on localhost) 
+	user@example.com
+	hans_solo
 
 the app has two default security levels the high level and low level
 
@@ -22,7 +22,6 @@ Clicking on a level opens a view where you can assign pages to the level by clic
 Select the pages u want to add from the dropdown menu to assign pages to a security level
 
 Assign permissions to users by clicking the permissions link then select the appropriate level of permission
-
 
 Login as the user whose permissions have been added to verify they can assess the links to the newly added pages
 

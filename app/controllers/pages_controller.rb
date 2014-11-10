@@ -44,10 +44,12 @@ class PagesController < ApplicationController
 	  end
 
 	  def destroy
+	  	security_level = SecurityLevel.find(params[:security_level_id])
 	    page = Page.find(params[:id])
 	    authorize page,"destroy"
 	    page.destroy
-	    redirect_to pages_path, :notice => "Page deleted."
+
+	    redirect_to security_level, :notice => "Page deleted."
 	  end
 
 	  private
